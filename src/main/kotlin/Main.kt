@@ -1,16 +1,26 @@
 package org.example
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, " + name + "!")
+    val minesweeper = Minesweeper()
+    minesweeper.creatGame()
+    minesweeper.show()
+}
 
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
+class Minesweeper(){
+
+    private val board = mutableListOf(mutableListOf(".", ".", "X", "."))
+
+    fun creatGame(){
+        val line1 = mutableListOf(".", ".", ".", "X")
+        val line2 = mutableListOf(".", "X", ".", ".")
+        val line3 = mutableListOf("X", ".", ".", ".")
+
+        board.add(line1)
+        board.add(line2)
+        board.add(line3)
+    }
+
+    fun show(){
+        board.forEach { println(it.joinToString(" ")) }
     }
 }
