@@ -8,17 +8,21 @@ fun main() {
     val amountMines = readln().toInt()
     minesweeper.creatGame(amountMines)
     minesweeper.show()
+    minesweeper.play()
 }
 
 class Minesweeper(val x: Int, val y: Int){
 
     private val field = mutableListOf(mutableListOf("1"))
-    private lateinit var coordanateMines: MutableSet<MutableList<Int>>
+    private lateinit var coordinatesMines: MutableSet<MutableList<Int>>
+    private val coordinatesMarked = mutableSetOf(mutableListOf(0, 0))
 
     fun creatGame(amountMines: Int){
-        coordanateMines = setRandomMines(amountMines)
+        coordinatesMines = setRandomMines(amountMines)
 
         field.clear()
+        coordinatesMarked.clear()
+
         repeat(this.x){
             val lines = mutableListOf<String>()
             repeat(this.y){
@@ -28,7 +32,7 @@ class Minesweeper(val x: Int, val y: Int){
             field.add(lines)
         }
 
-        val xMines = coordanateMines.toMutableList()
+        val xMines = coordinatesMines.toMutableList()
         repeat(amountMines){
             val yMines = xMines[it].toMutableList()
             val x = yMines[0]
@@ -37,9 +41,80 @@ class Minesweeper(val x: Int, val y: Int){
             field[x][y] = "X"
         }
 
-        setNumberMinesAroundSpace()
+        setNumberAroundMines()
+        hideMines()
     }
 
+    fun play(){
+
+        while (true){
+            print("Set/delete mines marks (x and y coordinates):")
+            // nao percebi a referencia as cordenadas x e y, troquei a ordem quando criado
+            val (y, x) = readln().split(" ").map { it.toInt() - 1 }
+
+            when{
+                mutableListOf(x, y) in coordinatesMines -> {
+                    if (field[x][y] == "."){
+
+                        field[x][y] = "*"
+                        coordinatesMarked.add(mutableListOf(x, y))
+                        show()
+                        if (coordinatesMarked.size == coordinatesMines.size)
+                            if (coordinatesMarked == coordinatesMines)
+                                break
+
+                    }else {
+
+                        field[x][y] = "."
+                        coordinatesMarked.remove(mutableListOf(x, y))
+                        show()
+                    }
+                }
+                field[x][y] == "." -> {
+                    field[x][y] = "*"
+                    coordinatesMarked.add(mutableListOf(x, y))
+                    show()
+                }
+                field[x][y] == "*" ->{
+                    field[x][y] = "."
+                    coordinatesMarked.remove(mutableListOf(x, y))
+                    show()
+                }
+                isNumeric(field[x][y]) -> println("There is a number here!")
+            }
+        }
+
+        println("Congratulations! You found all the mines!")
+        coordinatesMarked.clear()
+    }
+
+    fun show(){
+
+
+        print(" |")
+        repeat(field.size){
+            print("${it + 1}")
+        }
+        println("|")
+
+        print("-|")
+        repeat(field.size){
+            print("-")
+        }
+        println("|")
+
+        var index = 0
+        for (line in field){
+
+            println("${++index}|${line.joinToString("")}|")
+        }
+
+        print("-|")
+        repeat(field.size){
+            print("-")
+        }
+        println("|")
+    }
     private fun setRandomMines(amount: Int): MutableSet<MutableList<Int>>{
         val mines = mutableSetOf(
             mutableListOf(
@@ -57,8 +132,8 @@ class Minesweeper(val x: Int, val y: Int){
         return mines
     }
 
-    private fun setNumberMinesAroundSpace(){
-        val xMines = coordanateMines.toMutableList()
+    private fun setNumberAroundMines(){
+        val xMines = coordinatesMines.toMutableList()
 
         repeat(xMines.size){
             val yMines = xMines[it].toMutableList()
@@ -125,7 +200,18 @@ class Minesweeper(val x: Int, val y: Int){
 
     }
 
-    fun show(){
-        field.forEach { println(it.joinToString("")) }
+    private fun hideMines(){
+        val xMines = coordinatesMines.toMutableList()
+
+        repeat(xMines.size) {
+            val yMines = xMines[it].toMutableList()
+            val indexX = yMines[0]
+            val indexY = yMines[1]
+
+            field[indexX][indexY] = "."
+        }
+    }
+    private fun isNumeric(toCheck: String): Boolean {
+        return toCheck.all { char -> char.isDigit() }
     }
 }
