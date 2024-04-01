@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6a8a9cb-6992-419a-ae0a-358a5eb0dc32" name="Changes" comment="Pass on step 3">
+    <list default="true" id="e6a8a9cb-6992-419a-ae0a-358a5eb0dc32" name="Changes" comment="Pass on step 4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
@@ -199,7 +199,14 @@
       <updated>1710765650373</updated>
       <workItem from="1710765653606" duration="6553000" />
       <workItem from="1710809346939" duration="2167000" />
-      <workItem from="1710853505969" duration="4423000" />
+      <workItem from="1710853505969" duration="9110000" />
+      <workItem from="1710895319317" duration="597000" />
+      <workItem from="1710933526206" duration="5603000" />
+      <workItem from="1710980900528" duration="5148000" />
+      <workItem from="1711024434393" duration="9106000" />
+      <workItem from="1711114576128" duration="12063000" />
+      <workItem from="1711894369417" duration="8478000" />
+      <workItem from="1711932204110" duration="3916000" />
     </task>
     <task id="LOCAL-00001" summary="Pass on step 1">
       <option name="closed" value="true" />
@@ -217,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710811455408</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Pass on step 4">
+      <option name="closed" value="true" />
+      <created>1710858054297</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1710858054297</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,6 +241,22 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Pass on step 1" />
     <MESSAGE value="Pass on step 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pass on step 3" />
+    <MESSAGE value="Pass on step 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pass on step 4" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-function">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/Main.kt</url>
+          <line>219</line>
+          <properties class="org.example.Minesweeper" method="exploreEmptyCellTwo">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
